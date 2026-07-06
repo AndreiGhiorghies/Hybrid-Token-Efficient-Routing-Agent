@@ -6,4 +6,5 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/amd
+      - ./test_data/input:/input
+      - ./test_output:/output
