@@ -41,7 +41,7 @@ class RouterEngine:
             if (
                 best_local_response
                 and best_local_response.success
-                and self.local_runner.is_confident(best_local_response)
+                and self.local_runner.is_confident(raw_task, best_local_response)
             ):
                 best_local_response.route = "local"
                 best_local_response.model = "local"
@@ -197,8 +197,10 @@ class RouterEngine:
 
         if self.allowed_models:
             return self.allowed_models[0]
+        
+        return "gemma-4-31b-it-nvfp4" # to be deleted
 
-        raise RuntimeError("No allowed models available")
+        #raise RuntimeError("No allowed models available")
 
     def _max_tokens(self, category: Category, difficulty: float) -> int:
         if category == Category.SENTIMENT:

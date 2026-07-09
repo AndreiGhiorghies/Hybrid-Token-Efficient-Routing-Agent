@@ -8,6 +8,7 @@ class Response:
         self.usage = {}
         self.raw_response = None
         self.error = None
+        self.confidence = 0.0
 
     def set_text(self, text: str):
         safe_text = text or ""
@@ -16,3 +17,4 @@ class Response:
 
     def get_text(self) -> str:
         return self.answer or self.response or ""
+        

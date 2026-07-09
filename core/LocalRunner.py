@@ -65,7 +65,12 @@ class LocalRunner:
             
             confidence = total_prob / len(token_logprobs)
 
-        return Response(success = True, response = final_text.strip())
+        response = Response()
+        response.success = True
+        response.set_text(final_text)
+        response.confidence = confidence
+
+        return response
     
     def is_confident(self, task_data: Request, response: Response) -> bool:
         category, confidence = task_data.category, response.confidence
