@@ -1,24 +1,240 @@
+from dataclasses import dataclass
+from typing import Optional
+
 from core.TaskClassifier import TaskClassifier
 from core.LocalRunner import LocalRunner
 from core.RemoteClient import RemoteClient
-from data.Request import Request
+from data.Request import Request, Category
+from data.Response import Response
+
+
+@dataclass
+class RouteDecision:
+    route: str
+    model: Optional[str]
+    temperature: float
+    max_tokens: int
+    batchable: bool
+    reason: str
+
 
 class RouterEngine:
-    def __init__(self, classifier: TaskClassifier, local_runner: LocalRunner, remote_client: RemoteClient):
+    def __init__(
+        self,
+        classifier: TaskClassifier,
+        local_runner: LocalRunner,
+        remote_client: RemoteClient
+    ):
         self.classifier = classifier
         self.local_runner = local_runner
         self.remote_client = remote_client
+        self.allowed_models = remote_client.allowed_models
 
-    def process_request(self, raw_task: Request):
-        if self.classifier.is_local_friendly(raw_task):
-            local_response = self.local_runner.generate(raw_task)
-            
-            if local_response.success and self.local_runner.is_confident(local_response):
-                return local_response
+    def process_request(self, raw_task: Request) -> Response:
+        self._ensure_classified(raw_task)
 
-        remote_response = self.remote_client.generate(raw_task)
-        if remote_response.success:
+        best_local_response = None
+
+        if self._is_local_candidate(raw_task):
+            best_local_response = self._safe_local_generate(raw_task)
+
+            if (
+                best_local_response
+                and best_local_response.success
+                and self.local_runner.is_confident(best_local_response)
+            ):
+                best_local_response.route = "local"
+                best_local_response.model = "local"
+                return best_local_response
+
+        decision = self.choose_route(raw_task)
+
+        remote_response = self.remote_client.generate(
+            task_data=raw_task,
+            model=decision.model,
+            temperature=decision.temperature,
+            max_tokens=decision.max_tokens
+        )
+
+        if remote_response.success and remote_response.get_text():
+            remote_response.route = "remote"
+            remote_response.model = decision.model
             return remote_response
-        
-        fallback_response = self.local_runner.generate(raw_task)
-        return fallback_response
+
+        if best_local_response and best_local_response.get_text():
+            best_local_response.route = "fallback_local"
+            best_local_response.model = "local"
+            return best_local_response
+
+        fallback_response = self._safe_local_generate(raw_task)
+
+        if fallback_response and fallback_response.get_text():
+            fallback_response.route = "fallback_local"
+            fallback_response.model = "local"
+            return fallback_response
+
+        empty_fallback = Response()
+        empty_fallback.success = False
+        empty_fallback.route = "fallback"
+        empty_fallback.model = "none"
+        empty_fallback.set_text("Unable to determine a confident answer.")
+        return empty_fallback
+
+    def _ensure_classified(self, task: Request) -> None:
+        if getattr(task, "category", Category.NONE) != Category.NONE:
+            return
+
+        classified_task = self.classifier.classify(task)
+
+        # Supports both styles:
+        # 1. classifier mutates task and returns None
+        # 2. classifier returns a classified Request object
+        if classified_task is not None:
+            task.category = getattr(classified_task, "category", task.category)
+            task.difficulty = getattr(classified_task, "difficulty", task.difficulty)
+
+    def _is_local_candidate(self, task: Request) -> bool:
+        try:
+            return self.classifier.is_local_friendly(task)
+        except Exception:
+            return False
+
+    def _safe_local_generate(self, task: Request):
+        try:
+            return self.local_runner.generate(task)
+        except Exception:
+            return None
+
+    def choose_route(self, task: Request) -> RouteDecision:
+        category = task.category
+        difficulty = float(task.difficulty)
+
+        model = self._select_model(category, difficulty)
+
+        return RouteDecision(
+            route="remote",
+            model=model,
+            temperature=0.0,
+            max_tokens=self._max_tokens(category, difficulty),
+            batchable=self._is_batchable(category, difficulty),
+            reason=f"Selected {model} for category={category.name}, difficulty={difficulty}"
+        )
+
+    def _select_model(self, category: Category, difficulty: float) -> str:
+        if category == Category.CODE_DEBUG:
+            candidates = [
+                "kimi-k2p7-code",
+                "minimax-m3",
+                "gemma-4-31b-it"
+            ]
+
+        elif category == Category.CODE_GENERATION:
+            candidates = [
+                "kimi-k2p7-code",
+                "gemma-4-31b-it",
+                "minimax-m3"
+            ]
+
+        elif category == Category.LOGICAL:
+            if difficulty >= 7.0:
+                candidates = [
+                    "minimax-m3",
+                    "gemma-4-31b-it",
+                    "gemma-4-31b-it-nvfp4"
+                ]
+            else:
+                candidates = [
+                    "gemma-4-31b-it-nvfp4",
+                    "gemma-4-31b-it",
+                    "minimax-m3"
+                ]
+
+        elif category == Category.MATH:
+            if difficulty >= 7.0:
+                candidates = [
+                    "minimax-m3",
+                    "gemma-4-31b-it",
+                    "gemma-4-31b-it-nvfp4"
+                ]
+            else:
+                candidates = [
+                    "gemma-4-31b-it-nvfp4",
+                    "gemma-4-26b-a4b-it",
+                    "minimax-m3"
+                ]
+
+        elif category in {
+            Category.SENTIMENT,
+            Category.NER,
+            Category.SUMMARISATION
+        }:
+            candidates = [
+                "gemma-4-26b-a4b-it",
+                "gemma-4-31b-it-nvfp4",
+                "gemma-4-31b-it"
+            ]
+
+        elif category == Category.FACTUAL_KNOWLEDGE:
+            candidates = [
+                "gemma-4-31b-it-nvfp4",
+                "gemma-4-26b-a4b-it",
+                "gemma-4-31b-it"
+            ]
+
+        else:
+            candidates = [
+                "gemma-4-31b-it-nvfp4",
+                "gemma-4-26b-a4b-it",
+                "minimax-m3"
+            ]
+
+        return self._first_allowed(candidates)
+
+    def _first_allowed(self, candidates: list[str]) -> str:
+        for model in candidates:
+            if model in self.allowed_models:
+                return model
+
+        if self.allowed_models:
+            return self.allowed_models[0]
+
+        raise RuntimeError("No allowed models available")
+
+    def _max_tokens(self, category: Category, difficulty: float) -> int:
+        if category == Category.SENTIMENT:
+            return 50
+
+        if category == Category.NER:
+            return 120
+
+        if category == Category.SUMMARISATION:
+            return 100 if difficulty <= 6.5 else 180
+
+        if category == Category.FACTUAL_KNOWLEDGE:
+            return 140
+
+        if category == Category.MATH:
+            return 180
+
+        if category == Category.LOGICAL:
+            return 250
+
+        if category == Category.CODE_DEBUG:
+            return 450
+
+        if category == Category.CODE_GENERATION:
+            return 500
+
+        return 160
+
+    def _is_batchable(self, category: Category, difficulty: float) -> bool:
+        if difficulty > 6.5:
+            return False
+
+        return category in {
+            Category.SENTIMENT,
+            Category.NER,
+            Category.SUMMARISATION,
+            Category.FACTUAL_KNOWLEDGE,
+            Category.MATH
+        }

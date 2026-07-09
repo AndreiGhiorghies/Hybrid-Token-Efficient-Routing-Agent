@@ -1,0 +1,5 @@
+onnxruntime
+tokenizers
+numpy
+
+llama-cpp-python==0.3.33

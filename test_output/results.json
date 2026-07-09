@@ -1,1 +1,122 @@
-[{"task_id": "t1", "answer": "Error: Internal exception."}]
+[
+    {
+        "task_id": "cdebug-01",
+        "answer": "Category: CODE_GENERATION, Difficulty: 0.4, Confidence: 0.50, Category2: CODE_DEBUG, Difficulty2: 0.2, Confidence2: 0.15, Local Response: "
+    },
+    {
+        "task_id": "cdebug-02",
+        "answer": "Category: CODE_DEBUG, Difficulty: 0.5, Confidence: 0.50, Category2: CODE_DEBUG, Difficulty2: 0.5, Confidence2: 1.28, Local Response: "
+    },
+    {
+        "task_id": "cdebug-03",
+        "answer": "Category: CODE_DEBUG, Difficulty: 0.6, Confidence: 0.50, Category2: CODE_DEBUG, Difficulty2: 0.6, Confidence2: 0.95, Local Response: "
+    },
+    {
+        "task_id": "cdebug-04",
+        "answer": "Category: CODE_DEBUG, Difficulty: 0.8, Confidence: 0.50, Category2: CODE_DEBUG, Difficulty2: 0.8, Confidence2: 1.06, Local Response: "
+    },
+    {
+        "task_id": "cgen-01",
+        "answer": "Category: CODE_GENERATION, Difficulty: 0.3, Confidence: 0.50, Category2: CODE_GENERATION, Difficulty2: 0.3, Confidence2: 0.33, Local Response: "
+    },
+    {
+        "task_id": "cgen-02",
+        "answer": "Category: CODE_GENERATION, Difficulty: 0.3, Confidence: 0.50, Category2: CODE_GENERATION, Difficulty2: 0.3, Confidence2: 0.02, Local Response: "
+    },
+    {
+        "task_id": "cgen-03",
+        "answer": "Category: CODE_GENERATION, Difficulty: 0.8, Confidence: 0.50, Category2: CODE_GENERATION, Difficulty2: 0.8, Confidence2: 1.45, Local Response: "
+    },
+    {
+        "task_id": "cgen-04",
+        "answer": "Category: CODE_GENERATION, Difficulty: 0.7, Confidence: 0.50, Category2: CODE_GENERATION, Difficulty2: 0.7, Confidence2: 0.35, Local Response: "
+    },
+    {
+        "task_id": "fact-01",
+        "answer": "Category: NER, Difficulty: 0.6, Confidence: 0.50, Category2: NER, Difficulty2: 0.6, Confidence2: 0.37, Local Response: "
+    },
+    {
+        "task_id": "fact-02",
+        "answer": "Category: CODE_DEBUG, Difficulty: 0.3, Confidence: 0.50, Category2: CODE_GENERATION, Difficulty2: 0.3, Confidence2: 0.04, Local Response: "
+    },
+    {
+        "task_id": "fact-03",
+        "answer": "Category: CODE_DEBUG, Difficulty: 0.9, Confidence: 0.50, Category2: CODE_DEBUG, Difficulty2: 0.9, Confidence2: 0.01, Local Response: "
+    },
+    {
+        "task_id": "fact-04",
+        "answer": "Category: CODE_DEBUG, Difficulty: 0.7, Confidence: 0.50, Category2: CODE_DEBUG, Difficulty2: 0.7, Confidence2: 0.31, Local Response: "
+    },
+    {
+        "task_id": "log-01",
+        "answer": "Category: LOGICAL, Difficulty: 0.4, Confidence: 0.50, Category2: LOGICAL, Difficulty2: 0.4, Confidence2: 1.00, Local Response: "
+    },
+    {
+        "task_id": "log-02",
+        "answer": "Category: LOGICAL, Difficulty: 0.3, Confidence: 0.50, Category2: LOGICAL, Difficulty2: 0.3, Confidence2: 1.19, Local Response: "
+    },
+    {
+        "task_id": "log-03",
+        "answer": "Category: LOGICAL, Difficulty: 0.4, Confidence: 0.50, Category2: LOGICAL, Difficulty2: 0.4, Confidence2: 1.11, Local Response: "
+    },
+    {
+        "task_id": "log-04",
+        "answer": "Category: LOGICAL, Difficulty: 0.4, Confidence: 0.50, Category2: LOGICAL, Difficulty2: 0.4, Confidence2: 1.06, Local Response: "
+    },
+    {
+        "task_id": "math-01",
+        "answer": "Category: LOGICAL, Difficulty: 0.6, Confidence: 0.50, Category2: MATH, Difficulty2: 0.3, Confidence2: 0.39, Local Response: "
+    },
+    {
+        "task_id": "math-02",
+        "answer": "Category: MATH, Difficulty: 0.5, Confidence: 0.50, Category2: MATH, Difficulty2: 0.5, Confidence2: 1.80, Local Response: "
+    },
+    {
+        "task_id": "math-03",
+        "answer": "Category: LOGICAL, Difficulty: 0.7, Confidence: 0.50, Category2: LOGICAL, Difficulty2: 0.7, Confidence2: 0.46, Local Response: "
+    },
+    {
+        "task_id": "math-04",
+        "answer": "Category: LOGICAL, Difficulty: 0.5, Confidence: 0.50, Category2: MATH, Difficulty2: 0.8, Confidence2: 0.18, Local Response: "
+    },
+    {
+        "task_id": "ner-01",
+        "answer": "Category: NER, Difficulty: 0.4, Confidence: 0.50, Category2: NER, Difficulty2: 0.4, Confidence2: 1.00, Local Response: "
+    },
+    {
+        "task_id": "ner-02",
+        "answer": "Category: NER, Difficulty: 0.5, Confidence: 0.50, Category2: NER, Difficulty2: 0.5, Confidence2: 1.27, Local Response: "
+    },
+    {
+        "task_id": "ner-03",
+        "answer": "Category: CODE_GENERATION, Difficulty: 0.9, Confidence: 0.50, Category2: CODE_GENERATION, Difficulty2: 0.9, Confidence2: 0.04, Local Response: "
+    },
+    {
+        "task_id": "ner-04",
+        "answer": "Category: NER, Difficulty: 0.6, Confidence: 0.50, Category2: NER, Difficulty2: 0.6, Confidence2: 0.82, Local Response: "
+    },
+    {
+        "task_id": "sent-01",
+        "answer": "Category: SENTIMENT, Difficulty: 0.5, Confidence: 0.50, Category2: SENTIMENT, Difficulty2: 0.5, Confidence2: 1.00, Local Response: "
+    },
+    {
+        "task_id": "sent-02",
+        "answer": "Category: SENTIMENT, Difficulty: 0.4, Confidence: 0.50, Category2: SENTIMENT, Difficulty2: 0.4, Confidence2: 0.56, Local Response: "
+    },
+    {
+        "task_id": "sent-03",
+        "answer": "Category: SENTIMENT, Difficulty: 0.4, Confidence: 0.50, Category2: SENTIMENT, Difficulty2: 0.4, Confidence2: 1.00, Local Response: "
+    },
+    {
+        "task_id": "summ-01",
+        "answer": "Category: SUMMARISATION, Difficulty: 0.2, Confidence: 0.50, Category2: FACTUAL_KNOWLEDGE, Difficulty2: 0.3, Confidence2: 0.25, Local Response: "
+    },
+    {
+        "task_id": "summ-02",
+        "answer": "Category: SUMMARISATION, Difficulty: 0.3, Confidence: 0.50, Category2: SUMMARISATION, Difficulty2: 0.3, Confidence2: 0.56, Local Response: "
+    },
+    {
+        "task_id": "summ-03",
+        "answer": "Category: SUMMARISATION, Difficulty: 0.7, Confidence: 0.50, Category2: SUMMARISATION, Difficulty2: 0.7, Confidence2: 0.32, Local Response: "
+    }
+]

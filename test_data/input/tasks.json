@@ -1,6 +1,182 @@
 [
     {
-        "task_id": "t1",
-        "prompt": "Summarise the following text in one sentence: ..."
+        "task_id": "cdebug-01",
+        "category": "CODE_DEBUG",
+        "difficulty": 0.3,
+        "prompt": "Fix the syntax error in this Python list comprehension: `[x for x in range(10) if x % 2 = 0]`"
+    },
+    {
+        "task_id": "cdebug-02",
+        "category": "CODE_DEBUG",
+        "difficulty": 0.5,
+        "prompt": "Identify the bug in this C++ code that reverses an array: `for(int i=0; i<=n/2; i++) { swap(arr[i], arr[n-i]); }`"
+    },
+    {
+        "task_id": "cdebug-03",
+        "category": "CODE_DEBUG",
+        "difficulty": 0.7,
+        "prompt": "This Rust binary search implementation sometimes enters an infinite loop. Identify the condition causing this: `let mut left = 0; let mut right = arr.len() - 1; while left < right { let mid = (left + right) / 2; if arr[mid] < target { left = mid; } else { right = mid - 1; } }`"
+    },
+    {
+        "task_id": "cdebug-04",
+        "category": "CODE_DEBUG",
+        "difficulty": 0.9,
+        "prompt": "Diagnose the race condition in this Java multi-threaded block where two threads update a shared HashMap without using ConcurrentHashMap or synchronized blocks."
+    },
+    {
+        "task_id": "cgen-01",
+        "category": "CODE_GENERATION",
+        "difficulty": 0.3,
+        "prompt": "Write a Python function to check if a given string is a palindrome, ignoring spaces and capitalization."
+    },
+    {
+        "task_id": "cgen-02",
+        "category": "CODE_GENERATION",
+        "difficulty": 0.5,
+        "prompt": "Write a function in C++ to return the nth Fibonacci number using dynamic programming and O(1) space complexity."
+    },
+    {
+        "task_id": "cgen-03",
+        "category": "CODE_GENERATION",
+        "difficulty": 0.7,
+        "prompt": "Implement a custom LRU Cache in Python using a doubly linked list and a hash map to ensure O(1) time complexity for both get and put operations."
+    },
+    {
+        "task_id": "cgen-04",
+        "category": "CODE_GENERATION",
+        "difficulty": 0.9,
+        "prompt": "Write a C++ program for a directed graph to find a path from node p to node r and back, such that the maximum cost of any traversed arc in the entire journey is minimized."
+    },
+    {
+        "task_id": "fact-01",
+        "category": "FACTUAL_KNOWLEDGE",
+        "difficulty": 0.2,
+        "prompt": "What is the chemical symbol for Gold, and what is its atomic number on the periodic table?"
+    },
+    {
+        "task_id": "fact-02",
+        "category": "FACTUAL_KNOWLEDGE",
+        "difficulty": 0.5,
+        "prompt": "Who is generally considered the first computer programmer, and for what early mechanical general-purpose computer did they write an algorithm?"
+    },
+    {
+        "task_id": "fact-03",
+        "category": "FACTUAL_KNOWLEDGE",
+        "difficulty": 0.7,
+        "prompt": "Explain the fundamental differences between TCP and UDP transport protocols regarding connection establishment and packet delivery guarantees."
+    },
+    {
+        "task_id": "fact-04",
+        "category": "FACTUAL_KNOWLEDGE",
+        "difficulty": 0.9,
+        "prompt": "Detail the specific architectural differences between the x86-64 and ARMv8 instruction sets when it comes to memory ordering models."
+    },
+    {
+        "task_id": "log-01",
+        "category": "LOGICAL",
+        "difficulty": 0.3,
+        "prompt": "If all blorps are plumps, and some plumps are gloops, does it logically follow that all blorps are definitely gloops?"
+    },
+    {
+        "task_id": "log-02",
+        "category": "LOGICAL",
+        "difficulty": 0.5,
+        "prompt": "Alice is taller than Bob but shorter than Charlie. Dave is taller than Alice but shorter than Charlie. Who is the shortest person in the group?"
+    },
+    {
+        "task_id": "log-03",
+        "category": "LOGICAL",
+        "difficulty": 0.7,
+        "prompt": "Five houses are painted different colors. The Brit lives in the red house. The Swede keeps dogs. If the green house is immediately to the left of the white one, who drinks tea?"
+    },
+    {
+        "task_id": "log-04",
+        "category": "LOGICAL",
+        "difficulty": 0.9,
+        "prompt": "Three people (A, B, C) are either strict liars or strict truth-tellers. A says 'B is a liar'. B says 'A and C are of the exact same type'. What type of person is C?"
+    },
+    {
+        "task_id": "math-01",
+        "category": "MATH",
+        "difficulty": 0.3,
+        "prompt": "If a server processes 60 requests per second, how many total requests will it process in exactly 2.5 hours?"
+    },
+    {
+        "task_id": "math-02",
+        "category": "MATH",
+        "difficulty": 0.5,
+        "prompt": "Solve for x in this algebraic equation: 3(x - 4) + 5 = 2x + 7."
+    },
+    {
+        "task_id": "math-03",
+        "category": "MATH",
+        "difficulty": 0.7,
+        "prompt": "A database cluster contains 5 read replicas, 3 master nodes, and 2 caching servers. If two servers are selected at random without replacement, what is the exact probability that both are read replicas?"
+    },
+    {
+        "task_id": "math-04",
+        "category": "MATH",
+        "difficulty": 0.9,
+        "prompt": "Calculate the exact definite integral of the function f(x) = x^2 * e^x from x=0 to x=1."
+    },
+    {
+        "task_id": "ner-01",
+        "category": "NER",
+        "difficulty": 0.3,
+        "prompt": "Extract the names of all the people mentioned in this text: 'John and Mary went to the hardware store to meet David before the meeting.'"
+    },
+    {
+        "task_id": "ner-02",
+        "category": "NER",
+        "difficulty": 0.5,
+        "prompt": "Identify all geographical locations and dates in the following sentence: 'The peace treaty was signed in Paris on November 11, 1918, officially ending the conflict in Europe.'"
+    },
+    {
+        "task_id": "ner-03",
+        "category": "NER",
+        "difficulty": 0.7,
+        "prompt": "Extract all programming languages, cloud providers, and databases from: 'We migrated our backend from a monolithic Ruby on Rails app on Heroku to microservices written in Go and Node.js, deployed on AWS with data stored in PostgreSQL and Redis.'"
+    },
+    {
+        "task_id": "ner-04",
+        "category": "NER",
+        "difficulty": 0.9,
+        "prompt": "Find all medical conditions, active chemical ingredients, and exact dosages in: 'The patient was prescribed 50mg of Sertraline daily for severe clinical depression, replacing their previous regimen of 10mg Escitalopram.'"
+    },
+    {
+        "task_id": "sent-01",
+        "category": "SENTIMENT",
+        "difficulty": 0.3,
+        "prompt": "Classify the sentiment of this review: 'I absolutely love the new user interface, it is incredibly fast and user-friendly!'"
+    },
+    {
+        "task_id": "sent-02",
+        "category": "SENTIMENT",
+        "difficulty": 0.6,
+        "prompt": "Classify the sentiment of this review: 'The underlying database is decent, but the API latency is completely unacceptable and the documentation is practically non-existent.'"
+    },
+    {
+        "task_id": "sent-03",
+        "category": "SENTIMENT",
+        "difficulty": 0.9,
+        "prompt": "Classify the sentiment of this review: 'Oh brilliant, yet another mandatory firmware update that completely wipes my custom settings. Exactly what I needed to spend my Friday night fixing.'"
+    },
+    {
+        "task_id": "summ-01",
+        "category": "SUMMARISATION",
+        "difficulty": 0.4,
+        "prompt": "Summarize this in exactly one sentence: 'Photosynthesis is the biological process used by plants, algae, and certain bacteria to harness energy from sunlight and turn it into chemical energy.'"
+    },
+    {
+        "task_id": "summ-02",
+        "category": "SUMMARISATION",
+        "difficulty": 0.7,
+        "prompt": "Summarize the core benefits of Docker in exactly 15 words based on this paragraph: 'Docker allows developers to package applications into containers—standardized executable components combining application source code with the operating system libraries and dependencies required to run that code reliably in any environment.'"
+    },
+    {
+        "task_id": "summ-03",
+        "category": "SUMMARISATION",
+        "difficulty": 0.9,
+        "prompt": "Condense the geopolitical causes of World War I into a strictly structured JSON object with keys 'primary_cause' and 'secondary_factors' using a maximum of 30 words total."
     }
 ]
