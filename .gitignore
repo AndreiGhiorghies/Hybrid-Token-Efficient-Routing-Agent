@@ -1,2 +1,5 @@
 __pycache__/
 .env
+models/
+test_data/
+test_output/
