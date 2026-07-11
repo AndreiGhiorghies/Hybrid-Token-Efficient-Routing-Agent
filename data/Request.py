@@ -13,7 +13,7 @@ class Category(Enum):
 
 class Request:
     def __init__(self, id, prompt):
-        self.id = id;
+        self.id = id
         self.prompt = prompt
         self.category = Category.NONE
         self.difficulty = 0.0 # min: 0.0; max 10.0

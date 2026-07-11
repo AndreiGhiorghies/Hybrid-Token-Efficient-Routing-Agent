@@ -1,31 +1,31 @@
 [
     {
         "task_id": "cdebug-04",
-        "answer": "public class RaceConditionExample {\n    private static HashMap<String, Integer> map = new HashMap<>();\n\n    public static void main(String[] args) {\n        Thread t1 = new Thread(() -> {\n            map.put(\"key\", 1);\n            map.put(\"key\", 2);\n        });\n\n        Thread t2 = new Thread(() -> {\n            System.out.println(map.get(\"key\"));\n        });\n\n        t1.start();\n        t2.start();\n    }\n}"
+        "answer": "Two threads can simultaneously read, modify, and write the same HashMap entry, causing lost updates, inconsistent state, or infinite loops during resize due to non-atomic put operations and unsafe concurrent access."
     },
     {
         "task_id": "cgen-01",
-        "answer": "def is_palindrome(s):\n    s = ''.join(c for c in s if c.isalnum()).lower()\n    return s == s[::-1]"
+        "answer": "def is_palindrome(s):\n    s = s.replace(' ', '').lower()\n    return s == s[::-1]"
     },
     {
         "task_id": "fact-02",
-        "answer": "Ada Lovelace for Charles Babbage's Analytical Engine."
+        "answer": "Ada Lovelace, Charles Babbage's Analytical Engine."
     },
     {
         "task_id": "log-02",
-        "answer": "Charlie"
+        "answer": "Bob"
     },
     {
         "task_id": "math-03",
-        "answer": "0.125"
+        "answer": "2/9"
     },
     {
         "task_id": "ner-01",
-        "answer": "John Mary David"
+        "answer": "John, Mary, David"
     },
     {
         "task_id": "sent-02",
-        "answer": "NEGATIVE"
+        "answer": "Negative"
     },
     {
         "task_id": "summ-03",

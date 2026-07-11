@@ -29,11 +29,19 @@ class RouterEngine:
         self.local_runner = local_runner
         self.remote_client = remote_client
         self.allowed_models = remote_client.allowed_models
+        self.tasks_to_api = dict()
+
+    def get_answers(self, jfile):
+        decision = self.choose_route(Request(0, ""))
+        self.remote_client.get_answers(jfile, decision.model or "", decision.temperature, decision.max_tokens)
 
     def process_request(self, raw_task: Request) -> Response:
         self._ensure_classified(raw_task)
 
         best_local_response = None
+
+        """ if raw_task.category != Category.CODE_DEBUG:
+            return Response() """
 
         if self._is_local_candidate(raw_task):
             best_local_response = self._safe_local_generate(raw_task)
@@ -46,6 +54,24 @@ class RouterEngine:
                 best_local_response.route = "local"
                 best_local_response.model = "local"
                 return best_local_response
+            
+        """ if raw_task.category in [Category.CODE_DEBUG, Category.CODE_GENERATION]:
+            if "code" not in self.tasks_to_api:
+                self.tasks_to_api["code"] = []
+            self.tasks_to_api["code"].append(raw_task)
+        if raw_task.category in [Category.LOGICAL, Category.MATH]:
+            if "logical" not in self.tasks_to_api:
+                self.tasks_to_api["logical"] = []
+            self.tasks_to_api["python"].append(raw_task)
+        if raw_task.category in [Category.SENTIMENT, Category.FACTUAL_KNOWLEDGE, Category.SUMMARISATION, Category.NER]:
+            if "easy" not in self.tasks_to_api:
+                self.tasks_to_api["easy"] = []
+            self.tasks_to_api["easy"].append(raw_task)
+
+        return Response() """
+
+        self.remote_client.add_task(raw_task)
+        return Response()
 
         decision = self.choose_route(raw_task)
 
@@ -66,18 +92,18 @@ class RouterEngine:
             best_local_response.model = "local"
             return best_local_response
 
-        fallback_response = self._safe_local_generate(raw_task)
+        """ fallback_response = self._safe_local_generate(raw_task)
 
         if fallback_response and fallback_response.get_text():
             fallback_response.route = "fallback_local"
             fallback_response.model = "local"
-            return fallback_response
+            return fallback_response """
 
         empty_fallback = Response()
         empty_fallback.success = False
         empty_fallback.route = "fallback"
         empty_fallback.model = "none"
-        empty_fallback.set_text("Unable to determine a confident answer.")
+        empty_fallback.set_text("Unable to determine a confident answer. here:/")
         return empty_fallback
 
     def _ensure_classified(self, task: Request) -> None:
@@ -121,6 +147,8 @@ class RouterEngine:
         )
 
     def _select_model(self, category: Category, difficulty: float) -> str:
+        return self._first_allowed(["kimi-k2p7-code", "minimax-m3", "gemma-4-31b-it", "gemma-4-31b-it-nvfp4", "gemma-4-26b-a4b-it"])
+
         if category == Category.CODE_DEBUG:
             candidates = [
                 "kimi-k2p7-code",
@@ -198,11 +226,12 @@ class RouterEngine:
         if self.allowed_models:
             return self.allowed_models[0]
         
-        return "gemma-4-31b-it-nvfp4" # to be deleted
+        #return "gemma-4-31b-it-nvfp4" # to be deleted
 
-        #raise RuntimeError("No allowed models available")
+        raise RuntimeError("No allowed models available")
 
     def _max_tokens(self, category: Category, difficulty: float) -> int:
+        return 64000
         if category == Category.SENTIMENT:
             return 50
 

@@ -29,7 +29,7 @@ class LocalRunner:
             "CRITICAL: No pleasantries, no explanations, no introductions, no conversational filler."
         )
 
-        task_data.prompt += "\n\nProvide the final answer directly, with absolutely NO additional text or reasoning."
+        prompt = task_data.prompt + "\n\nProvide the final answer directly, with absolutely NO additional text or reasoning. Make the response as short as possible, but still complete and accurate."
         messages = [
             {
                 "role": "system", 
@@ -37,13 +37,13 @@ class LocalRunner:
             },
             {
                 "role": "user", 
-                "content": task_data.prompt
+                "content": prompt
             }
         ]
 
         response = self.llm.create_chat_completion(
             messages=messages,
-            max_tokens=200,
+            max_tokens=400,
             temperature=0.0,  # 100% deterministic
             top_p=0.9,
             logprobs=True,
@@ -73,14 +73,15 @@ class LocalRunner:
         return response
     
     def is_confident(self, task_data: Request, response: Response) -> bool:
+        return True
         category, confidence = task_data.category, response.confidence
-        if category == Category.SENTIMENT and confidence >= 0.0:
+        if category == Category.SENTIMENT and confidence >= 0.2:
             return True
-        if category == Category.FACTUAL_KNOWLEDGE and confidence >= 0.0:
+        if category == Category.FACTUAL_KNOWLEDGE and confidence >= 0.2:
             return True
-        if category == Category.SUMMARISATION and confidence >= 0.0:
+        if category == Category.SUMMARISATION and confidence >= 0.2:
             return True
-        if category == Category.NER and confidence >= 0.0:
+        if category == Category.NER and confidence >= 0.2:
             return True
         
         if category == Category.CODE_DEBUG and confidence >= 0.5:

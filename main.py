@@ -44,13 +44,16 @@ def extract_answer(result) -> str:
 def main():
     global_start_time = time.time()
 
-    api_key = os.environ.get("FIREWORKS_API_KEY", "")
-    base_url = os.environ.get("FIREWORKS_BASE_URL", "")
+    """ api_key = os.environ.get("FIREWORKS_API_KEY", "")
+    base_url = os.environ.get("FIREWORKS_BASE_URL", "") 
     allowed_models = [
         model.strip()
         for model in os.environ.get("ALLOWED_MODELS", "").split(",")
         if model.strip()
-    ]
+    ] """
+    api_key = "fw_QkCH6xgu4f7jSusbRmsft4"
+    base_url = "https://api.fireworks.ai/inference/v1/chat/completions"
+    allowed_models = ["minimax-m3", "kimi-k2p7-code", "gemma-4-31b-it", "gemma-4-31b-it-nvfp4", "gemma-4-26b-a4b-it"]
 
     engine = RouterEngine(
         classifier=TaskClassifier(),
@@ -86,16 +89,21 @@ def main():
         try:
             request = Request(task_id, prompt)
             response = engine.process_request(request)
-            answer = extract_answer(response)
+            if(response is None or not response.success):
+                print(f"Processed task_id={task_id} with model {response.model if response else 'None'} and route {response.route if response else 'None'} and usage {response.usage if response else 'None'} with response: {response.get_text() if response else 'None'}")
+                answer = extract_answer(response)
+                results.append({
+                    "task_id": task_id,
+                    "answer": answer
+                })
 
         except Exception:
             traceback.print_exc(file=sys.stderr)
             answer = "Unable to determine a confident answer."
-
-        results.append({
-            "task_id": task_id,
-            "answer": answer
-        })
+            results.append({
+                "task_id": task_id,
+                "answer": answer
+            })
 
     os.makedirs("/output", exist_ok=True)
 
@@ -107,3 +115,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# docker buildx build --platform linux/amd64 -t andrei010/hackathon-router:latest --push .

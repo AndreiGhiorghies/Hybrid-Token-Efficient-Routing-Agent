@@ -58,7 +58,7 @@ class TaskClassifier:
         
         return (sum_embeddings / sum_mask)[0]
 
-    def classify(self, prompt: Request, k: int = 5) -> dict:
+    def classify(self, prompt: Request, k: int = 5) -> Request:
         prompt_vector = self._get_embedding(prompt)
         similarities = [
             (self._cosine_similarity(prompt_vector, anchor["vector"]), anchor)
@@ -75,7 +75,16 @@ class TaskClassifier:
         winning = [(sim, a["difficulty"]) for sim, a in top_k if a["category"] == best_category]
         avg_difficulty = sum(d for _, d in winning) / len(winning)
 
-        return {"category" : best_category, "difficulty": round(avg_difficulty, 1)}
+        try:
+            prompt.category = Category[best_category]
+        except KeyError:
+            prompt.category = Category.NONE
+
+        prompt.difficulty = round(avg_difficulty, 1)
+
+        return prompt
+
+        #return {"category" : best_category, "difficulty": round(avg_difficulty, 1)}
     
     def _vectorize_anchors(self):
         category_vectors = {}
@@ -93,6 +102,7 @@ class TaskClassifier:
             category_vectors.setdefault(anchor["category"], []).append(vector)
     
     def is_local_friendly(self, task_data: Request) -> bool:
+        #return True
         category, difficulty = task_data.category, task_data.difficulty
         if category == Category.SENTIMENT and difficulty < 1.0:
             return True
