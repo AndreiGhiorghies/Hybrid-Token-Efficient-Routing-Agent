@@ -1,50 +1,62 @@
 [
     {
-        "task_id": "cdebug-04",
-        "category": "CODE_DEBUG",
-        "difficulty": 0.9,
-        "prompt": "Diagnose the race condition in this Java multi-threaded block where two threads update a shared HashMap without using ConcurrentHashMap or synchronized blocks."
-    },
-    {
-        "task_id": "cgen-01",
-        "category": "CODE_GENERATION",
-        "difficulty": 0.3,
-        "prompt": "Write a Python function to check if a given string is a palindrome, ignoring spaces and capitalization."
-    },
-    {
-        "task_id": "fact-02",
+        "task_id": "T01",
         "category": "FACTUAL_KNOWLEDGE",
-        "difficulty": 0.5,
-        "prompt": "Who is generally considered the first computer programmer, and for what early mechanical general-purpose computer did they write an algorithm?"
+        "difficulty": 0.3,
+        "prompt": "Name the three primary colors in the RGB color model and briefly explain why displays use RGB instead of RYB."
     },
     {
-        "task_id": "log-02",
-        "category": "LOGICAL",
-        "difficulty": 0.5,
-        "prompt": "Alice is taller than Bob but shorter than Charlie. Dave is taller than Alice but shorter than Charlie. Who is the shortest person in the group?"
+        "task_id": "T01b",
+        "category": "FACTUAL_KNOWLEDGE",
+        "difficulty": 0.4,
+        "prompt": "What is the difference between machine learning and deep learning? Briefly explain how each works."
     },
     {
-        "task_id": "math-03",
+        "task_id": "T01c",
+        "category": "FACTUAL_KNOWLEDGE",
+        "difficulty": 0.3,
+        "prompt": "Explain the difference between RAM and ROM in a computer. What is each type used for?"
+    },
+    {
+        "task_id": "T02",
+        "category": "MATH",
+        "difficulty": 0.6,
+        "prompt": "A warehouse starts with 2,400 units. In Q1 it sells 37% of stock. In Q2 it restocks 800 units. In Q3 it sells 640 units. How many units remain at the end of Q3?"
+    },
+    {
+        "task_id": "T02b",
         "category": "MATH",
         "difficulty": 0.7,
-        "prompt": "A database cluster contains 5 read replicas, 3 master nodes, and 2 caching servers. If two servers are selected at random without replacement, what is the exact probability that both are read replicas?"
+        "prompt": "A recipe requires 3/4 cup of sugar for 12 cookies. How much sugar is needed for 30 cookies? If sugar costs $2.40 per cup, what is the total cost of sugar for 30 cookies?"
     },
     {
-        "task_id": "ner-01",
-        "category": "NER",
-        "difficulty": 0.3,
-        "prompt": "Extract the names of all the people mentioned in this text: 'John and Mary went to the hardware store to meet David before the meeting.'"
-    },
-    {
-        "task_id": "sent-02",
+        "task_id": "T03",
         "category": "SENTIMENT",
         "difficulty": 0.6,
-        "prompt": "Classify the sentiment of this review: 'The underlying database is decent, but the API latency is completely unacceptable and the documentation is practically non-existent.'"
+        "prompt": "Classify the sentiment of this customer review as Positive, Negative, or Neutral and give a one-sentence reason: 'The product arrived two days late and the packaging was damaged, but the item worked perfectly and customer support resolved my complaint within an hour.'"
     },
     {
-        "task_id": "summ-03",
+        "task_id": "T03b",
+        "category": "SENTIMENT",
+        "difficulty": 0.6,
+        "prompt": "Classify the sentiment of this tweet as Positive, Negative, or Neutral and give a one-sentence reason: 'Just got my order. Box was dented and the manual was missing, but honestly the device itself is flawless and set up in under 5 minutes.'"
+    },
+    {
+        "task_id": "T04",
         "category": "SUMMARISATION",
-        "difficulty": 0.9,
-        "prompt": "Condense the geopolitical causes of World War I into a strictly structured JSON object with keys 'primary_cause' and 'secondary_factors' using a maximum of 30 words total."
+        "difficulty": 0.7,
+        "prompt": "Summarize the following passage in exactly two sentences: 'Machine learning is increasingly deployed in healthcare for diagnosis, treatment planning, and patient monitoring. These systems analyse medical images, predict patient deterioration, and spot patterns in electronic health records that might be missed by human clinicians. However, concerns remain about model interpretability, data privacy, liability when errors occur, and the potential for algorithmic bias to worsen existing healthcare disparities. Regulatory frameworks are still catching up with the pace of deployment, creating uncertainty for healthcare providers and technology developers alike.'"
+    },
+    {
+        "task_id": "T04b",
+        "category": "SUMMARISATION",
+        "difficulty": 0.8,
+        "prompt": "Summarize the following passage in exactly three bullet points, each no longer than 15 words: 'Remote work has transformed how companies operate globally. Employees gain flexibility and reduced commute times, leading to reported improvements in work-life balance. However, challenges persist around collaboration, company culture, and the blurring of personal and professional boundaries. Organisations are responding by investing in digital collaboration tools and rethinking office space as a hub for social and creative work rather than daily attendance.'"
+    },
+    {
+        "task_id": "T05",
+        "category": "NER",
+        "difficulty": 0.5,
+        "prompt": "Extract all named entities from the following text and label each as PERSON, ORGANIZATION, LOCATION, or DATE: 'On March 15 2023, Sundar Pichai announced that Google would open a new AI research lab in Zurich, partnering with ETH Zurich to focus on large language model safety.'"
     }
 ]

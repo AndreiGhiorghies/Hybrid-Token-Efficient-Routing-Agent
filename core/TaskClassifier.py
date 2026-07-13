@@ -102,9 +102,12 @@ class TaskClassifier:
             category_vectors.setdefault(anchor["category"], []).append(vector)
     
     def is_local_friendly(self, task_data: Request) -> bool:
+        return False
         #return True
+        if len(task_data.prompt) >= 1200:
+            return False
         category, difficulty = task_data.category, task_data.difficulty
-        if category == Category.SENTIMENT and difficulty < 1.0:
+        if category == Category.SENTIMENT and difficulty < 0.0:
             return True
         if category == Category.FACTUAL_KNOWLEDGE and difficulty < 1.0:
             return True

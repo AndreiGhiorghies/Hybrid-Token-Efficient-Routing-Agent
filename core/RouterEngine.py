@@ -33,9 +33,12 @@ class RouterEngine:
 
     def get_answers(self, jfile):
         decision = self.choose_route(Request(0, ""))
-        self.remote_client.get_answers(jfile, decision.model or "", decision.temperature, decision.max_tokens)
+        try:
+            self.remote_client.get_answers(self.local_runner, jfile, decision.model or "kimi-k2p7-code")
+        except Exception:
+            pass
 
-    def process_request(self, raw_task: Request) -> Response:
+    def process_request(self, raw_task: Request):
         self._ensure_classified(raw_task)
 
         best_local_response = None
@@ -44,7 +47,9 @@ class RouterEngine:
             return Response() """
 
         if self._is_local_candidate(raw_task):
-            best_local_response = self._safe_local_generate(raw_task)
+            self.local_runner.add_task(raw_task)
+            return
+            """ best_local_response = self._safe_local_generate(raw_task)
 
             if (
                 best_local_response
@@ -53,7 +58,7 @@ class RouterEngine:
             ):
                 best_local_response.route = "local"
                 best_local_response.model = "local"
-                return best_local_response
+                return best_local_response """
             
         """ if raw_task.category in [Category.CODE_DEBUG, Category.CODE_GENERATION]:
             if "code" not in self.tasks_to_api:
@@ -71,7 +76,8 @@ class RouterEngine:
         return Response() """
 
         self.remote_client.add_task(raw_task)
-        return Response()
+
+        return
 
         decision = self.choose_route(raw_task)
 
@@ -220,15 +226,16 @@ class RouterEngine:
 
     def _first_allowed(self, candidates: list[str]) -> str:
         for model in candidates:
-            if model in self.allowed_models:
-                return model
+            for allowed_model in self.allowed_models:
+                if model in allowed_model:
+                    return model
 
         if self.allowed_models:
             return self.allowed_models[0]
         
-        #return "gemma-4-31b-it-nvfp4" # to be deleted
+        return "kimi-k2p7-code" # to be deleted
 
-        raise RuntimeError("No allowed models available")
+        #raise RuntimeError("No allowed models available")
 
     def _max_tokens(self, category: Category, difficulty: float) -> int:
         return 64000

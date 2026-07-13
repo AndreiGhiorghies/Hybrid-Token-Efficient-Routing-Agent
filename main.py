@@ -44,16 +44,17 @@ def extract_answer(result) -> str:
 def main():
     global_start_time = time.time()
 
+    save_tasks = []
+
     """ api_key = os.environ.get("FIREWORKS_API_KEY", "")
     base_url = os.environ.get("FIREWORKS_BASE_URL", "") 
     allowed_models = [
         model.strip()
         for model in os.environ.get("ALLOWED_MODELS", "").split(",")
-        if model.strip()
     ] """
     api_key = "fw_QkCH6xgu4f7jSusbRmsft4"
-    base_url = "https://api.fireworks.ai/inference/v1/chat/completions"
-    allowed_models = ["minimax-m3", "kimi-k2p7-code", "gemma-4-31b-it", "gemma-4-31b-it-nvfp4", "gemma-4-26b-a4b-it"]
+    base_url = "https://api.fireworks.ai/inference/v1/"
+    allowed_models = ["minimax-m3", "kimi-k2p7-code", "accounts/fireworks/models/gemma-4-31b-it", "accounts/fireworks/models/gemma-4-31b-it-nvfp4", "accounts/fireworks/models/gemma-4-26b-a4b-it"]
 
     engine = RouterEngine(
         classifier=TaskClassifier(),
@@ -76,6 +77,56 @@ def main():
         task_id = item.get("task_id", "")
         prompt = item.get("prompt", "")
 
+        save_tasks.append({
+            "task_id": task_id,
+            "prompt": prompt
+        })
+
+        try:
+            request = Request(task_id, prompt)
+            engine.process_request(request)
+        except Exception:
+            results.append({
+                "task_id": task_id,
+                "answer": "Unable to determine a confident answer."
+            })
+
+    engine.get_answers(results)
+
+    for i in range(len(engine.local_runner.tasks_to_local)):
+        elapsed = time.time() - global_start_time
+        remaining = GLOBAL_TIME_LIMIT_SECONDS - elapsed
+
+
+        task_data = engine.local_runner.tasks_to_local[i]
+        if remaining < 30:
+            results.append({
+                "task_id": task_data.id,
+                "answer": "Unable to determine a confident answer within the time limit."
+            })
+            continue
+        response = engine.local_runner.get_answer(i)
+        if response is not None and response.success:
+            answer = extract_answer(response)
+            results.append({
+                "task_id": task_data.id,
+                "answer": answer
+            })
+        else:
+            results.append({
+                "task_id": task_data.id,
+                "answer": "Unable to determine a confident answer."
+            })
+
+    """ for item in tasks:
+        task_id = item.get("task_id", "")
+        prompt = item.get("prompt", "")
+
+        save_tasks.append({
+            "task_id": task_id,
+            "prompt": prompt
+        })
+
         elapsed = time.time() - global_start_time
         remaining = GLOBAL_TIME_LIMIT_SECONDS - elapsed
 
@@ -89,8 +140,8 @@ def main():
         try:
             request = Request(task_id, prompt)
             response = engine.process_request(request)
-            if(response is None or not response.success):
-                print(f"Processed task_id={task_id} with model {response.model if response else 'None'} and route {response.route if response else 'None'} and usage {response.usage if response else 'None'} with response: {response.get_text() if response else 'None'}")
+            if response is not None and response.success:
+                #print(f"Processed task_id={task_id} with model {response.model if response else 'None'} and route {response.route if response else 'None'} and usage {response.usage if response else 'None'} with response: {response.get_text() if response else 'None'}")
                 answer = extract_answer(response)
                 results.append({
                     "task_id": task_id,
@@ -99,10 +150,21 @@ def main():
 
         except Exception:
             traceback.print_exc(file=sys.stderr)
-            answer = "Unable to determine a confident answer."
+     """        ##print(f"Error processing task_id={task_id}. Adding fallback answer.")
+    """ answer = "Unable to determine a confident answer. la exceptie"
+    results.append({
+        "task_id": task_id,
+        "answer": answer
+    }) """
+
+    #print("\n\nINAINTE: ", results, "\n\n")
+    #print("\n\nDUPA: ", results)
+
+    for task in save_tasks:
+        if not any(r["task_id"] == task["task_id"] for r in results):
             results.append({
-                "task_id": task_id,
-                "answer": answer
+                "task_id": task["task_id"],
+                "answer": "Unable to determine a confident answer."
             })
 
     os.makedirs("/output", exist_ok=True)
@@ -117,3 +179,7 @@ if __name__ == "__main__":
     main()
 
 # docker buildx build --platform linux/amd64 -t andrei010/hackathon-router:latest --push .
+
+# docker run --rm -it --memory="4g" --memory-swap="4g" --cpus="2" -v "%cd%/temp/mock_harness/input:/input" -v "%cd%/temp/mock_harness/output:/output" -e FIREWORKS_API_KEY="fw_QkCH6xgu4f7jSusbRmsft4" -e FIREWORKS_BASE_URL="https://api.fireworks.ai/inference/v1" -e ALLOWED_MODELS="kimi-k2p7-code" --entrypoint /bin/bash andrei010/hackathon-router:v10
+
+# tot la kimi cu batch: 711 + 849 = 1560 tokens

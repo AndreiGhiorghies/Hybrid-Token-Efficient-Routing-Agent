@@ -1,402 +1,68 @@
 [
-  {
-    "text": "What is the capital of France?",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Who wrote the play Romeo and Juliet?",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.2
-  },
-  {
-    "text": "Define the process of photosynthesis in one simple sentence.",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.3
-  },
-  {
-    "text": "Explain the stages of the water cycle.",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.4
-  },
-  {
-    "text": "How does a four-stroke internal combustion engine work?",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.5
-  },
-  {
-    "text": "What are the primary differences between meiosis and mitosis in cellular biology?",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Explain the concept of supply and demand in macroeconomics and how it dictates market equilibrium.",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Describe the geopolitical impact of the 1956 Suez Canal crisis on the Cold War dynamics.",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Explain the principles of quantum entanglement and discuss its potential implications for modern cryptography.",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Detail the biological mechanisms of the CRISPR-Cas9 system, specifically focusing on guide RNA binding and DNA cleavage kinetics.",
-    "category": "FACTUAL_KNOWLEDGE",
-    "difficulty": 1.0
-  },
-  {
-    "text": "Calculate 5 + 7.",
-    "category": "MATH",
-    "difficulty": 0.1
-  },
-  {
-    "text": "What is 20 percent of 150?",
-    "category": "MATH",
-    "difficulty": 0.2
-  },
-  {
-    "text": "Solve the algebraic equation for x: 2x + 4 = 10.",
-    "category": "MATH",
-    "difficulty": 0.3
-  },
-  {
-    "text": "If a train travels 60 miles in 1.5 hours, what is its average speed in miles per hour?",
-    "category": "MATH",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Calculate the compound interest on a $1000 principal over 5 years at an annual interest rate of 4%.",
-    "category": "MATH",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Find the roots of the quadratic equation x^2 - 5x + 6 = 0.",
-    "category": "MATH",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Calculate the volume of a cylinder with a radius of 4cm and a height of 10cm. Use 3.14 for pi.",
-    "category": "MATH",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Evaluate the definite integral of 3x^2 dx from x=0 to x=2.",
-    "category": "MATH",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Solve the following system of linear equations: 3x+2y-z=1, 2x-2y+4z=-2, -x+0.5y-z=0.",
-    "category": "MATH",
-    "difficulty": 0.9
-  },
-  {
-    "text": "A company's revenue grows exponentially at 8% per year. Accounting for a 3% annual inflation rate, calculate the real adjusted value of the revenue in year 10, assuming a year 0 baseline of $1M.",
-    "category": "MATH",
-    "difficulty": 1.0
-  },
-  {
-    "text": "Is this text positive or negative: I loved the movie so much!",
-    "category": "SENTIMENT",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Classify the sentiment of this review: The food was terrible and served cold.",
-    "category": "SENTIMENT",
-    "difficulty": 0.2
-  },
-  {
-    "text": "Does this tweet express joy, anger, or sadness? Just got promoted, I am so happy today!",
-    "category": "SENTIMENT",
-    "difficulty": 0.3
-  },
-  {
-    "text": "Determine the sentiment of this feedback: It is okay, but it could definitely be better.",
-    "category": "SENTIMENT",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Analyze the tone: While the design is incredibly sleek, the poor battery life makes it completely unusable for business travel.",
-    "category": "SENTIMENT",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Label the sentiment and justify your choice: I wouldn't say it's the worst book I've ever read, but I certainly won't recommend it to anyone.",
-    "category": "SENTIMENT",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Evaluate the emotional state of the speaker: I'm not mad, just incredibly disappointed by the lack of transparency in this entire process.",
-    "category": "SENTIMENT",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Provide a nuanced sentiment classification: The cinematography is breathtaking, though the plot is predictably contrived and the pacing drags heavily in the second act.",
-    "category": "SENTIMENT",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Identify the underlying sentiment of this statement: Sure, let's just add another mandatory 3-hour meeting to my calendar, I clearly have infinite free time anyway.",
-    "category": "SENTIMENT",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Analyze the shifting sentiment in the provided transcript, explicitly extracting the sentiment directed toward the corporation versus the sentiment toward the physical product, and justify both with direct quotes.",
-    "category": "SENTIMENT",
-    "difficulty": 1.0
-  },
-  {
-    "text": "Summarize this paragraph in one sentence.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Give me a short summary of the text provided below.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.2
-  },
-  {
-    "text": "Condense this news article into exactly 3 bullet points.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.3
-  },
-  {
-    "text": "Provide a brief abstract highlighting the main idea of the following document.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Summarize the key arguments made by the author in a single 50-word paragraph.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Create an executive summary of this quarterly earnings report, specifically highlighting revenue growth and market risks.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Condense this dense legal document into plain English, restricting the final output to exactly 100 words.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Summarize the methodology and conclusion of this academic research paper. You must format your output strictly as valid JSON.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Read these three different articles covering the same event and provide a synthesized summary of their overlapping facts, actively filtering out any biased statements.",
-    "category": "SUMMARISATION",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Summarize the provided transcript of a 1-hour board meeting. You must group action items by assignee and output strictly as a nested JSON object containing keys for summary, decisions, and tasks without any markdown formatting.",
-    "category": "SUMMARISATION",
-    "difficulty": 1.0
-  },
-  {
-    "text": "Extract the person's name from this text: John went to the store.",
-    "category": "NER",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Identify the city mentioned in the following sentence: We are traveling to Tokyo tomorrow morning.",
-    "category": "NER",
-    "difficulty": 0.2
-  },
-  {
-    "text": "Find and list all the dates and years mentioned in the following paragraph.",
-    "category": "NER",
-    "difficulty": 0.3
-  },
-  {
-    "text": "Extract the names of any companies or organizations present in this press release.",
-    "category": "NER",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Label the entities in this news snippet into three categories: Person, Location, and Organization.",
-    "category": "NER",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Parse this email thread and extract the sender's full name, the proposed meeting date, and the physical location.",
-    "category": "NER",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Extract all financial figures from the text and pair them with their associated currency symbols.",
-    "category": "NER",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Identify and appropriately classify all medical symptoms, diagnoses, and prescription drug names mentioned in this patient chart.",
-    "category": "NER",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Extract a list of all geopolitical entities from the text and correctly map each one to its standard ISO 3166-1 alpha-3 country code.",
-    "category": "NER",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Read the provided commercial contract and extract all corporate signatories, governing law jurisdictions, and effective execution dates, formatting the output strictly as a JSON array of objects.",
-    "category": "NER",
-    "difficulty": 1.0
-  },
-  {
-    "text": "Why does this Python code throw a SyntaxError? print(\"Hello\"",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Find the bug in this simple loop: for i in range(5): print(j)",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.2
-  },
-  {
-    "text": "My array index is going out of bounds in this Java snippet. How do I fix it?",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.3
-  },
-  {
-    "text": "This function returns None instead of the expected mathematical sum. What is missing?",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Identify the logical error in this implementation of the bubble sort algorithm.",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Why is this React functional component not re-rendering when the internal state updates?",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Identify and patch the SQL injection vulnerability present in this PHP login script.",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Diagnose and resolve the severe memory leak in this C++ code block involving manual pointer management.",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.8
-  },
-  {
-    "text": "The following Go routine causes a deadlock under high load. Explain why this happens and provide a thread-safe concurrent implementation using channels.",
-    "category": "CODE_DEBUG",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Analyze this Rust snippet handling distributed locks over Redis. Identify the race condition that occurs during network partitions and provide a corrected implementation using the Redlock algorithm.",
-    "category": "CODE_DEBUG",
-    "difficulty": 1.0
-  },
-  {
-    "text": "If all cats are mammals, and a tiger is a cat, is a tiger a mammal?",
-    "category": "LOGICAL",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Bob is taller than Alice. Alice is taller than Eve. Who is the shortest person?",
-    "category": "LOGICAL",
-    "difficulty": 0.2
-  },
-  {
-    "text": "A bat and a ball cost $1.10 in total. The bat costs exactly $1.00 more than the ball. How much does the ball cost?",
-    "category": "LOGICAL",
-    "difficulty": 0.3
-  },
-  {
-    "text": "You have two empty jugs, one holds 3 gallons and the other 5 gallons. How do you measure exactly 4 gallons of water?",
-    "category": "LOGICAL",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Solve this logic grid puzzle: 3 people live in 3 different colored houses and own 3 different pets based on the provided clues.",
-    "category": "LOGICAL",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Identify the pattern and determine what number comes next in the sequence: 1, 1, 2, 3, 5, 8, 13...",
-    "category": "LOGICAL",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Determine the current day of the week if 3 days from yesterday was a Tuesday.",
-    "category": "LOGICAL",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Three gods A, B, and C are called True, False, and Random. True always speaks truly, False always speaks falsely, but Random is unpredictable. Determine their identities using only 3 yes/no questions.",
-    "category": "LOGICAL",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Solve this complex resource allocation problem: Assign 5 workers to 5 specific shifts given a set of 10 intersecting availability constraints and strict union rules.",
-    "category": "LOGICAL",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Given the rules of this hypothetical board game with 8 distinct unit types and various terrain modifiers, calculate the optimal sequence of moves to mathematically guarantee a win in exactly 3 turns under any opponent response.",
-    "category": "LOGICAL",
-    "difficulty": 1.0
-  },
-  {
-    "text": "Write a simple function that prints Hello, World! in Python.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.1
-  },
-  {
-    "text": "Create a function that takes two numbers as arguments and returns their sum.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.2
-  },
-  {
-    "text": "Write a script in JavaScript to reverse a given string.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.3
-  },
-  {
-    "text": "Write a SQL query to select all users older than 18 from the 'users' table.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.4
-  },
-  {
-    "text": "Implement a standard binary search algorithm in Python.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.5
-  },
-  {
-    "text": "Write an object-oriented Python class for a BankAccount with deposit, withdraw, and check_balance methods, including proper error handling for insufficient funds.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.6
-  },
-  {
-    "text": "Create a Bash script that searches for all .txt files in a specific directory tree and compresses them into a single tar.gz archive.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.7
-  },
-  {
-    "text": "Write a complete RESTful API endpoint in Node.js using Express that accepts a JSON payload, validates it against a strict schema, and safely saves it to a MongoDB collection.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.8
-  },
-  {
-    "text": "Implement a thread-safe LRU (Least Recently Used) Cache in C++ using a custom hash map and a doubly linked list.",
-    "category": "CODE_GENERATION",
-    "difficulty": 0.9
-  },
-  {
-    "text": "Write a complete Rust implementation of a custom version control system that handles raw blob hashing, tree creation, and commit chaining for repositories larger than 1GB.",
-    "category": "CODE_GENERATION",
-    "difficulty": 1.0
-  }
+  
+  { "text": "Explain what causes the seasons to change on Earth.", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.3 },
+  { "text": "Why does the sky appear blue during the day?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.3 },
+  { "text": "What is the boiling point of water at sea level in Celsius?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.1 },
+  { "text": "How does a vaccine train the immune system to fight disease?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.4 },
+  { "text": "What is the difference between weather and climate?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.3 },
+  { "text": "Explain how a nuclear reactor generates electricity.", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.5 },
+  { "text": "What are the main functions of the human liver?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.3 },
+  { "text": "Why do metals conduct electricity better than most non-metals?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.4 },
+  { "text": "What is the significance of Einstein's theory of relativity in modern physics?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.6 },
+  { "text": "How do plants absorb water and nutrients through their roots?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.3 },
+  { "text": "What is the difference between a virus and a bacterium?", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.4 },
+  { "text": "Explain how GPS satellites determine your location on Earth.", "category": "FACTUAL_KNOWLEDGE", "difficulty": 0.5 },
+
+  { "text": "A train travels 60 miles in 1.5 hours. What is its average speed in miles per hour?", "category": "MATH", "difficulty": 0.3 },
+  { "text": "If a shirt costs $40 and is discounted by 25%, what is the final price?", "category": "MATH", "difficulty": 0.3 },
+  { "text": "A car's fuel tank holds 50 liters and uses 6 liters per 100km. How far can it travel on a full tank?", "category": "MATH", "difficulty": 0.4 },
+  { "text": "A company had 1,200 employees. It laid off 8% in January and hired 150 new employees in February. How many employees does it have now?", "category": "MATH", "difficulty": 0.6 },
+  { "text": "A rectangular garden is 12m by 8m. What is its area and perimeter?", "category": "MATH", "difficulty": 0.3 },
+  { "text": "If you invest $1000 at 5% simple annual interest, how much interest will you earn after 3 years?", "category": "MATH", "difficulty": 0.4 },
+  { "text": "A recipe calls for 2 cups of flour per batch of 20 cookies. Scale the recipe to make 55 cookies.", "category": "MATH", "difficulty": 0.6 },
+  { "text": "Two trains leave stations 300km apart, moving toward each other at 80km/h and 70km/h. How long until they meet?", "category": "MATH", "difficulty": 0.7 },
+  { "text": "A population of bacteria doubles every 3 hours. Starting with 500 bacteria, how many will there be after 15 hours?", "category": "MATH", "difficulty": 0.7 },
+  { "text": "A store marks up a product by 40% then offers a 20% discount on the marked-up price. What is the net percentage change from the original price?", "category": "MATH", "difficulty": 0.8 },
+
+  { "text": "Classify the sentiment of this review as Positive, Negative, or Neutral: 'The food was cold when it arrived, but the delivery was fast and the staff apologized sincerely.'", "category": "SENTIMENT", "difficulty": 0.6 },
+  { "text": "Determine the sentiment of this comment: 'Absolutely love this app, it changed how I manage my time.'", "category": "SENTIMENT", "difficulty": 0.2 },
+  { "text": "Classify the sentiment: 'The movie was fine, nothing special but not bad either.'", "category": "SENTIMENT", "difficulty": 0.4 },
+  { "text": "What sentiment does this message express: 'I've called support three times and still no resolution, this is beyond frustrating.'", "category": "SENTIMENT", "difficulty": 0.3 },
+  { "text": "Classify the sentiment of this tweet and justify your answer: 'Great concept, terrible execution. The idea deserved better.'", "category": "SENTIMENT", "difficulty": 0.6 },
+  { "text": "Is this feedback positive, negative, or neutral: 'The course covered the basics adequately.'", "category": "SENTIMENT", "difficulty": 0.3 },
+  { "text": "Classify the sentiment: 'Worst customer service I've ever experienced, and the product broke within a week.'", "category": "SENTIMENT", "difficulty": 0.2 },
+  { "text": "Determine the sentiment of this employee review and explain your reasoning: 'Management is supportive most of the time, though communication during crises could improve significantly.'", "category": "SENTIMENT", "difficulty": 0.7 },
+
+  { "text": "Summarize the following in one sentence: 'Solar panels convert sunlight into electricity using photovoltaic cells. Their efficiency has improved significantly over the past decade while costs have dropped, making solar power increasingly competitive with fossil fuels.'", "category": "SUMMARISATION", "difficulty": 0.4 },
+  { "text": "Summarize the following passage in exactly two sentences: 'Urban planners increasingly favor mixed-use developments that combine housing, retail, and office space. This approach reduces commute times and creates more vibrant neighborhoods, though critics argue it can accelerate gentrification and displace long-term residents who cannot afford rising rents.'", "category": "SUMMARISATION", "difficulty": 0.6 },
+  { "text": "Condense this paragraph into a single sentence under 20 words: 'Electric vehicles are gaining market share worldwide as battery costs fall and charging infrastructure expands. However, concerns about raw material sourcing and grid capacity remain significant barriers to full adoption.'", "category": "SUMMARISATION", "difficulty": 0.7 },
+  { "text": "Summarize the following in exactly three bullet points, each under 15 words: 'Remote work has transformed how companies operate globally. Employees gain flexibility and reduced commute times. However, challenges persist around collaboration and company culture. Organisations are investing in digital tools to compensate.'", "category": "SUMMARISATION", "difficulty": 0.8 },
+  { "text": "Summarize this news excerpt in one sentence: 'The central bank raised interest rates by half a percentage point on Wednesday, citing persistent inflation pressures. Analysts had expected a smaller increase, and markets reacted with a sharp drop in bond prices.'", "category": "SUMMARISATION", "difficulty": 0.5 },
+
+  { "text": "Extract all named entities and label them PERSON, ORGANIZATION, LOCATION, or DATE: 'Elon Musk founded SpaceX in Hawthorne, California in 2002.'", "category": "NER", "difficulty": 0.3 },
+  { "text": "Identify all entities and their types in this sentence: 'On July 4th 1776, the Continental Congress adopted the Declaration of Independence in Philadelphia.'", "category": "NER", "difficulty": 0.3 },
+  { "text": "Extract the named entities from: 'Angela Merkel met with representatives from Siemens and BMW in Munich last October to discuss the automotive industry's future.'", "category": "NER", "difficulty": 0.5 },
+  { "text": "Label all person names, organizations, locations, and dates in: 'The World Health Organization announced on January 30th that Dr. Tedros would address the outbreak from its headquarters in Geneva.'", "category": "NER", "difficulty": 0.5 },
+  { "text": "Extract named entities from this text: 'Amazon acquired Whole Foods for $13.7 billion in 2017, expanding its presence in Austin and other major US cities.'", "category": "NER", "difficulty": 0.4 },
+
+  { "text": "This function should reverse a string but returns the original: def reverse_str(s): return s. Find and fix the bug.", "category": "CODE_DEBUGGING", "difficulty": 0.3 },
+  { "text": "This function should calculate the average of a list but crashes on empty input: def average(nums): return sum(nums) / len(nums). Fix it to handle empty lists gracefully.", "category": "CODE_DEBUGGING", "difficulty": 0.4 },
+  { "text": "This code should count vowels in a string but is case-sensitive and misses uppercase vowels: def count_vowels(s): return sum(1 for c in s if c in 'aeiou'). Fix it.", "category": "CODE_DEBUGGING", "difficulty": 0.3 },
+  { "text": "This recursive factorial function causes infinite recursion for n=0: def factorial(n): return n * factorial(n-1). Identify and fix the bug.", "category": "CODE_DEBUGGING", "difficulty": 0.5 },
+  { "text": "This function is meant to remove duplicates from a list while preserving order, but it doesn't: def dedupe(lst): return list(set(lst)). Fix it.", "category": "CODE_DEBUGGING", "difficulty": 0.5 },
+  { "text": "This code should merge two sorted lists into one sorted list but produces incorrect output for lists of different lengths. Find and fix the bug in the merge logic.", "category": "CODE_DEBUGGING", "difficulty": 0.7 },
+
+  { "text": "Three friends, Sam, Jo, and Lee, each own a different pet: cat, dog, bird. Sam does not own the bird. Jo owns the dog. Who owns the cat?", "category": "LOGICAL_REASONING", "difficulty": 0.4 },
+  { "text": "Four houses in a row are painted red, blue, green, and yellow. The red house is not at either end. The blue house is immediately left of the green house. The yellow house is at one end. What color is the house at the other end?", "category": "LOGICAL_REASONING", "difficulty": 0.6 },
+  { "text": "Five people are standing in a line. Anna is not first or last. Ben is somewhere before Chris. Dana is immediately after Anna. Eli is last. If Ben is first, what is the full order?", "category": "LOGICAL_REASONING", "difficulty": 0.8 },
+  { "text": "All squares are rectangles. Some rectangles are not blue. Can we conclude that some squares are not blue? Explain your reasoning.", "category": "LOGICAL_REASONING", "difficulty": 0.6 },
+  { "text": "A, B, and C each tell one true statement and one false statement about who ate the last cookie. Based on their statements, determine who is guilty.", "category": "LOGICAL_REASONING", "difficulty": 0.7 },
+
+  { "text": "Write a Python function that checks whether a given string is a palindrome, ignoring case and spaces.", "category": "CODE_GENERATION", "difficulty": 0.4 },
+  { "text": "Write a Python function that returns the second-largest number in a list, handling duplicates correctly.", "category": "CODE_GENERATION", "difficulty": 0.5 },
+  { "text": "Write a function that takes a list of integers and returns a new list with only the even numbers, preserving order.", "category": "CODE_GENERATION", "difficulty": 0.3 },
+  { "text": "Write a Python function that counts the frequency of each word in a given sentence and returns a dictionary.", "category": "CODE_GENERATION", "difficulty": 0.4 },
+  { "text": "Write a function that checks if two strings are anagrams of each other, ignoring case and spaces.", "category": "CODE_GENERATION", "difficulty": 0.5 },
+  { "text": "Write a Python function that implements binary search on a sorted list and returns the index of the target, or -1 if not found.", "category": "CODE_GENERATION", "difficulty": 0.6 },
+  { "text": "Write a function that flattens a nested list of arbitrary depth into a single flat list.", "category": "CODE_GENERATION", "difficulty": 0.7 }
 ]
