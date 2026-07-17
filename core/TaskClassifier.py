@@ -2,14 +2,12 @@ from data.Request import Request
 from data.Request import Category
 
 import json
+
 import numpy as np
 import onnxruntime as ort
 from tokenizers import Tokenizer
-import time
 
 class TaskClassifier:
-    CONFIDENCE_THRESHOLD = 0.65
-
     def __init__(self, onnx_model_path="./models/onnx", anchors_path="./data/anchors.json"):        
         # Load tokenizer and ONNX model
         self.tokenizer = Tokenizer.from_file(f"{onnx_model_path}/tokenizer.json")
@@ -58,8 +56,8 @@ class TaskClassifier:
         
         return (sum_embeddings / sum_mask)[0]
 
-    def classify(self, prompt: Request, k: int = 5) -> Request:
-        prompt_vector = self._get_embedding(prompt)
+    def classify(self, task: Request, k: int = 5) -> None:
+        prompt_vector = self._get_embedding(task)
         similarities = [
             (self._cosine_similarity(prompt_vector, anchor["vector"]), anchor)
             for anchor in self.anchor_vectors
@@ -76,15 +74,11 @@ class TaskClassifier:
         avg_difficulty = sum(d for _, d in winning) / len(winning)
 
         try:
-            prompt.category = Category[best_category]
+            task.category = Category[best_category]
         except KeyError:
-            prompt.category = Category.NONE
+            task.category = Category.NONE
 
-        prompt.difficulty = round(avg_difficulty, 1)
-
-        return prompt
-
-        #return {"category" : best_category, "difficulty": round(avg_difficulty, 1)}
+        task.difficulty = round(avg_difficulty, 1)
     
     def _vectorize_anchors(self):
         category_vectors = {}
@@ -100,29 +94,41 @@ class TaskClassifier:
             self.anchor_vectors.append(anchor_entry)
 
             category_vectors.setdefault(anchor["category"], []).append(vector)
-    
+
+    # Determine if a task is suitable for local processing based on its category and difficulty
     def is_local_friendly(self, task_data: Request) -> bool:
-        return False
-        #return True
+        # The prompt length is too long for local processing
         if len(task_data.prompt) >= 1200:
             return False
-        category, difficulty = task_data.category, task_data.difficulty
-        if category == Category.SENTIMENT and difficulty < 0.0:
-            return True
-        if category == Category.FACTUAL_KNOWLEDGE and difficulty < 1.0:
-            return True
-        if category == Category.SUMMARISATION and difficulty < 1.0:
-            return True
-        if category == Category.NER and difficulty < 1.0:
-            return True
-        
-        if category == Category.CODE_DEBUG and difficulty < 0.0:
-            return True
-        if category == Category.CODE_GENERATION and difficulty < 0.0:
-            return True
-        if category == Category.LOGICAL and difficulty < 0.0:
-            return True
-        if category == Category.MATH and difficulty < 0.0:
-            return True
 
-        return False
+        difficulty = task_data.difficulty
+
+        match task_data.category:
+            case Category.SENTIMENT:
+                return difficulty < 0.0
+            
+            case Category.FACTUAL_KNOWLEDGE:
+                return difficulty < 1.0
+            
+            case Category.SUMMARISATION:
+                return difficulty < 1.0
+            
+            case Category.NER:
+                return difficulty < 1.0
+            
+            case Category.CODE_DEBUG:
+                return difficulty < 0.0
+            
+            case Category.CODE_GENERATION:
+                return difficulty < 0.0
+            
+            case Category.LOGICAL:
+                return difficulty < 0.0
+            
+            case Category.MATH:
+                return difficulty < 0.0
+            
+            case Category.NONE:
+                return False
+            case _:
+                return False

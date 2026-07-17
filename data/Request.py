@@ -16,4 +16,4 @@ class Request:
         self.id = id
         self.prompt = prompt
         self.category = Category.NONE
-        self.difficulty = 0.0 # min: 0.0; max 10.0
+        self.difficulty = 0.0 # min: 0.0; max 1.0
