@@ -11,5 +11,5 @@ services:
           memory: 4G
     memswap_limit: 4G
     volumes:
-      - ./test_data/input:/input
-      - ./test_output:/output
+      - ./input:/input
+      - ./output:/output

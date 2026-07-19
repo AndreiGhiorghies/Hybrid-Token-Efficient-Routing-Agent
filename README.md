@@ -1,6 +1,6 @@
-# Hybrid Token-Efficient Routing Agent
+# Hybrid Token-Efficient Routing Agent - AMD Developer Hackathon: ACT II
 
-Production-oriented submission for the Fireworks hackathon track Hybrid Token-Efficient Routing Agent.
+Production-oriented submission for the AMD Developer Hackathon: ACT II, track Hybrid Token-Efficient Routing Agent.
 
 The system is designed to maximize accuracy while minimizing remote token usage by combining an embeddings-based task router, local inference, and controlled Fireworks fallback.
 
