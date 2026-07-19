@@ -18,17 +18,13 @@ GLOBAL_TIME_LIMIT_SECONDS = 9.5 * 60
 def main():
     global_start_time = time.time()
 
-    """ api_key = os.environ.get("FIREWORKS_API_KEY", "")
+    api_key = os.environ.get("FIREWORKS_API_KEY", "")
     base_url = os.environ.get("FIREWORKS_BASE_URL", "") 
     allowed_models = [
         model.strip()
         for model in os.environ.get("ALLOWED_MODELS", "").split(",")
-    ] """
-
-    api_key = "fw_QkCH6xgu4f7jSusbRmsft4"
-    base_url = "https://api.fireworks.ai/inference/v1/"
-    allowed_models = ["minimax-m3", "kimi-k2p7-code", "accounts/fireworks/models/gemma-4-31b-it", "accounts/fireworks/models/gemma-4-31b-it-nvfp4", "accounts/fireworks/models/gemma-4-26b-a4b-it"]
-
+    ]
+    
     engine = RouterEngine(
         classifier=TaskClassifier(),
         local_runner=LocalRunner(global_start_time, GLOBAL_TIME_LIMIT_SECONDS),
@@ -72,10 +68,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# docker buildx build --platform linux/amd64 -t andrei010/hackathon-router:latest --push .
-
-# docker run --rm -it --memory="4g" --memory-swap="4g" --cpus="2" -v "%cd%/temp/mock_harness/input:/input" -v "%cd%/temp/mock_harness/output:/output" -e FIREWORKS_API_KEY="fw_QkCH6xgu4f7jSusbRmsft4" -e FIREWORKS_BASE_URL="https://api.fireworks.ai/inference/v1" -e ALLOWED_MODELS="kimi-k2p7-code" --entrypoint /bin/bash andrei010/hackathon-router:v10
-
-# tot la kimi cu batch: 711 + 849 = 1560 tokens
-# kimi + minimax: 501 + 1277 = 1778 tokens
