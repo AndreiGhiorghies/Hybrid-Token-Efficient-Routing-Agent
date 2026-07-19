@@ -117,9 +117,21 @@ class RemoteClient:
     def _get_model(self, task: Request) -> str:
         model = ""
         if task.category in [Category.CODE_DEBUG, Category.CODE_GENERATION, Category.LOGICAL, Category.MATH]:
-            model = self._first_allowed_model(["kimi-k2p7-code", "minimax-m3"])
+            model = self._first_allowed_model([
+                "kimi-k2p7-code",
+                "minimax-m3",
+                "gemma-4-31b-it-nvfp4",
+                "gemma-4-26b-a4b-it",
+                "gemma-4-31b-it"
+            ])
         else:
-            model = self._first_allowed_model(["minimax-m3", "kimi-k2p7-code"])
+            model = self._first_allowed_model([
+                "minimax-m3",
+                "kimi-k2p7-code",
+                "gemma-4-31b-it-nvfp4",
+                "gemma-4-26b-a4b-it",
+                "gemma-4-31b-it"
+            ])
 
         # Ensure the model name is prefixed with the required path if not already present
         if not model.startswith("accounts/fireworks/models/"):
